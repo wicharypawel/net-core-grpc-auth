@@ -1,0 +1,35 @@
+﻿syntax = "proto3";
+
+package netcoregrpc.jwtauth.proto;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "NetCoreGrpc.JwtAuth.Proto";
+
+
+service Authorization {
+    rpc Login (LoginRequest) returns (LoginReply);
+}
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+message LoginRequest {
+    string login = 1;
+    string password = 2;
+}
+
+message LoginReply {
+    bool isSuccess = 1;
+    string jwt_token = 2;
+    google.protobuf.Timestamp expiration = 3;
+}

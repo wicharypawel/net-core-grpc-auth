@@ -1,0 +1,36 @@
+﻿syntax = "proto3";
+
+package netcoregrpc.cookiesauth.proto;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "NetCoreGrpc.CookiesAuth.Proto";
+
+
+service Authorization {
+    rpc Login (LoginRequest) returns (LoginReply);
+    rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+message LoginRequest {
+    string login = 1;
+    string password = 2;
+}
+
+message LoginReply {
+    bool isSuccess = 1;
+    google.protobuf.Timestamp expiration = 2;
+}
